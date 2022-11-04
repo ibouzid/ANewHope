@@ -19,8 +19,8 @@ const FilmDetails: React.FC<FilmDetailsProps> = ({filmData})=> {
     if(!filmData){
         return(
             <FlexColumn>
-            <FilmHeadline> Film Details</FilmHeadline>
-            <FilmSuggestion> Click on a Film Title for details</FilmSuggestion>
+              <FilmHeadline> Film Details</FilmHeadline>
+              <FilmSuggestion> Click on a Film Title for details</FilmSuggestion>
             </FlexColumn>
         )
         }
