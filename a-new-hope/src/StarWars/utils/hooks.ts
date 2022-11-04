@@ -9,7 +9,7 @@ export const useVehicles = () => {
     
   const queryClient = useQueryClient();
     return useQuery({ queryKey: ['vehicles'], 
-                      queryFn: async () => await FetchData('https://swapi.dev/api/vehicles?format=json'), 
+                      queryFn: async () => FetchData('https://swapi.dev/api/vehicles?format=json'), 
                       refetchOnWindowFocus: false,
                       staleTime: Infinity,
                       onSuccess: async (data) =>{
