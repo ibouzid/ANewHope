@@ -13,6 +13,7 @@ import { motion } from 'framer-motion';
 import { FlexColumn, VehicleHeadline } from '../StarWars.style';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { FilmData } from '../components/FilmDetails';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,14 +38,24 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 interface VehicleTableProps{
   setFilmData: (filmData: any) => void;
 }
+interface Vehicle{
+  model: string;
+  manufacturer: string;
+  created: string;
+  passengers: string;
+  films: string[];
+
+}
 
 const VehicleTable: React.FC< VehicleTableProps> = ({setFilmData})=> {
-    const {data: vehicles, isLoading} = useVehicles()
+    const vehiclesData = useVehicles();
+    const vehicles: Vehicle[] = vehiclesData?.data?.results;
+    const isLoading = vehiclesData?.isLoading;
     const storeFilmData = (film: any) =>{
       localStorage.setItem("film", JSON.stringify(film));
       setFilmData(film)
     }
-    const createFilmRow = (films: any) => {
+    const createFilmRow = (films: FilmData[]) => {
       return films?.map((film: any) => {
           return <><motion.div key={film?.title} whileHover={{
             scale: 1.2,
@@ -77,7 +88,7 @@ const VehicleTable: React.FC< VehicleTableProps> = ({setFilmData})=> {
           </TableRow>
         </TableHead>
         <TableBody>
-          {vehicles?.results?.map((row: any) => (
+          { vehicles && vehicles.map((row: any) => (
             <StyledTableRow key={row?.name}>
               <StyledTableCell  component="th" scope="row">
                 {row?.name}

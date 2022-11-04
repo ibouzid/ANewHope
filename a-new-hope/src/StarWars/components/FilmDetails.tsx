@@ -11,8 +11,16 @@ import { FilmHeadline, FilmSuggestion, FlexColumn } from '../StarWars.style';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
-interface FilmDetailsProps{
-    filmData: any
+export interface FilmData{
+  title: string;
+  producer:string;
+  director: string;
+  release_date: string;
+  opening_crawl: string;
+
+}
+export interface FilmDetailsProps{
+    filmData: FilmData;
 }
 
 const FilmDetails: React.FC<FilmDetailsProps> = ({filmData})=> {
